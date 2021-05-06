@@ -1,0 +1,154 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Managing Pays</h1>
+          </div>
+          
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card ">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  List of Pays
+                </h3>
+                <div class="card-tools">
+                  <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                    <form class="form-inline my-2 my-lg-0">
+                      <input type="search" (ngModelChange)="searchPays(key.value)" #key="ngModel" name="key" ngModel id="searchName" class="form-control mr-sm-2" placeholder="Search Pays..." required>
+                   </form>
+                    <button id="test" (click)="onOpenModal(null,'add')"class ='btn btn-primary active' type="button"  data-toggle="modal" data-target="#CreateTeam"><i class="fas fa-plus-circle"></i> Ajouter</button>
+                    </div>
+                  <!-- end Pop up -->
+                  </div>
+                </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="container" id ="main-container">
+                  <div class="row">
+                      <div *ngFor="let pay of pays" class="col-md-6 col-xl-4">
+                          <div class="card m-b-30">
+                              <div class="card-body row">
+                                  <div class="col-6">
+                                      <a href=""><img src="{{pay.photo}}" alt="" class="img-fluid rounded-circle w-60"></a>
+                                  </div>
+                                  <div class="col-6 card-title align-self-center mb-0">
+                                      <h5>Pays name : {{pay.libelle}}</h5>
+                                  </div>
+                              </div>
+                              <div class="card-body">
+                                  <div class="float-right btn-group btn-group-sm">
+                                      <a  (click)="onOpenModal(pay,'edit')" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i>Edit</a>
+                                      <a  (click)="onOpenModal(pay,'delete')" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                     </div>
+              </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+
+  <!-- Add Team Modal -->
+<div class="modal fade" id="addPaysModal" tabindex="-1" role="dialog" aria-labelledby="addPaysModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h5 class="modal-title" id="addPaysModalLabel">Ajouter Pays</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+           <form #addForm="ngForm" (ngSubmit)="onAddPays(addForm)">
+           <div class="form-group">
+              <label for="name">Pays name * : </label>
+              <input type="text" ngModel name="libelle" class="form-control" id="libelle" placeholder="Pays name :" required>
+           </div>
+           <div class="form-group">
+              <label for="phone">Image URL * : </label>
+              <input type="text" ngModel name="photo" class="form-control" id="photo" placeholder="Image URL" required>
+           </div>
+           <div class="modal-footer">
+              <button type="button" id="add-pays-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+           </div>
+           </form>
+        </div>
+     </div>
+   </div>
+   </div>
+
+   <!-- Edit Modal -->
+<div class="modal fade" id="updatePaysModal" tabindex="-1" role="dialog" aria-labelledby="paysEditModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="updatePaysModalLabel">Edit Pays with id :{{editPay?.id}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form #editForm = "ngForm">
+               <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" ngModel="{{editPay?.libelle}}" name="libelle" class="form-control" id="libelle" aria-describedby="emailHelp" placeholder="Pays name">
+               </div>
+               <input type="hidden" ngModel="{{editPay?.id}}" name="id" class="form-control" id="id">
+               <div class="form-group">
+                  <label for="phone">Image URL</label>
+                  <input type="text"  ngModel="{{editPay?.photo}}" name="photo" class="form-control" id="photo" placeholder="Image URL">
+               </div>
+               <div class="modal-footer">
+                  <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                  <button (click)="onUpdatePays(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+ </div>
+
+ <div class="modal fade" id="deletePaysModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="deleteModelLabel">Delete Pays</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <p>Are you sure you want to delete Pays {{deletePay?.libelle}}?</p>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+               <button (click)="onDeletePays(deletePay?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+            </div>
+         </div>
+      </div>
+   </div>
+ </div>

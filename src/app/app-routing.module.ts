@@ -14,6 +14,8 @@ import { HomeLayoutComponent } from './component/Layout/home-layout/home-layout.
 import { AuthMiddleware } from './middlewares/auth-middleware';
 import { AdminMiddleware } from './middlewares/admin-middleware';
 import { UserMiddleware } from './middlewares/user-middleware';
+import { PaysManagementComponent } from './component/pages/admin/pays-management/pays-management.component';
+import { OrganismeManagamentComponent } from './component/pages/admin/organisme-managament/organisme-managament.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -22,8 +24,9 @@ const routes: Routes = [
     canActivate : [AuthMiddleware,AdminMiddleware],
     component : AdminLayoutComponent,
     children : [
-      { path: '', component: DashboardComponent }
-      
+      { path: '', component: DashboardComponent },
+      { path :'pays_management' , component:PaysManagementComponent},
+      { path :'organisme_management', component : OrganismeManagamentComponent}
     ]
   },
   {

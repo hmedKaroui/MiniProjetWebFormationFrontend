@@ -20,6 +20,8 @@ import { AdminLayoutComponent } from './component/Layout/admin-layout/admin-layo
 import { DashboardComponent } from './component/pages/admin/dashboard/dashboard.component';
 import { HomeLayoutComponent } from './component/Layout/home-layout/home-layout.component';
 import { NavbarComponent } from './component/partials/navbar/navbar.component';
+import { PaysManagementComponent } from './component/pages/admin/pays-management/pays-management.component';
+import { OrganismeManagamentComponent } from './component/pages/admin/organisme-managament/organisme-managament.component';
 
 
 
@@ -38,7 +40,9 @@ import { NavbarComponent } from './component/partials/navbar/navbar.component';
     SidebarComponent,
     AdminLayoutComponent,
     DashboardComponent,
-    HomeLayoutComponent
+    HomeLayoutComponent,
+    PaysManagementComponent,
+    OrganismeManagamentComponent
     
   ],
   imports: [
