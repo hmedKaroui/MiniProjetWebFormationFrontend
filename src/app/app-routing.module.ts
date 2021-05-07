@@ -16,6 +16,7 @@ import { AdminMiddleware } from './middlewares/admin-middleware';
 import { UserMiddleware } from './middlewares/user-middleware';
 import { PaysManagementComponent } from './component/pages/admin/pays-management/pays-management.component';
 import { OrganismeManagamentComponent } from './component/pages/admin/organisme-managament/organisme-managament.component';
+import { ParticipantManagementComponent } from './component/pages/admin/participant-management/participant-management.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -26,7 +27,8 @@ const routes: Routes = [
     children : [
       { path: '', component: DashboardComponent },
       { path :'pays_management' , component:PaysManagementComponent},
-      { path :'organisme_management', component : OrganismeManagamentComponent}
+      { path :'organisme_management', component : OrganismeManagamentComponent},
+      { path :'participant_management',component : ParticipantManagementComponent},
     ]
   },
   {

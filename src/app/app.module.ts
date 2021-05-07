@@ -22,6 +22,7 @@ import { HomeLayoutComponent } from './component/Layout/home-layout/home-layout.
 import { NavbarComponent } from './component/partials/navbar/navbar.component';
 import { PaysManagementComponent } from './component/pages/admin/pays-management/pays-management.component';
 import { OrganismeManagamentComponent } from './component/pages/admin/organisme-managament/organisme-managament.component';
+import { ParticipantManagementComponent } from './component/pages/admin/participant-management/participant-management.component';
 
 
 
@@ -42,7 +43,8 @@ import { OrganismeManagamentComponent } from './component/pages/admin/organisme-
     DashboardComponent,
     HomeLayoutComponent,
     PaysManagementComponent,
-    OrganismeManagamentComponent
+    OrganismeManagamentComponent,
+    ParticipantManagementComponent
     
   ],
   imports: [

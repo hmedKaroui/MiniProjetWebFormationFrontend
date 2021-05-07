@@ -1,0 +1,335 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Managing Participant</h1>
+          </div>
+
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content" >
+      <div class="container-fluid" id ="main-container">
+        <div class="row">
+          <div class="col-12">
+            <div class="card ">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  List of Participant National
+                </h3>
+                <div class="card-tools">
+                  <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                    <form class="form-inline my-2 my-lg-0">
+                      <input type="search" (ngModelChange)="searchParticipantNational(key.value)" #key="ngModel" name="key" ngModel id="searchName" class="form-control mr-sm-2" placeholder="Search Organisme..." required>
+                   </form>
+                    <button id="test" (click)="onOpenModal(null,'add')" class ='btn btn-primary active' type="button"  data-toggle="modal" data-target="#CreateTeam"><i class="fas fa-plus-circle"></i> Ajouter</button>
+                  </div>
+                </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table #dataTable1 class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>Nom:</th>
+                      <th>Prenom :</th>
+                      <th>Email :</th>
+                      <th>N° Tel :</th>
+                      <th>Profile :</th>
+                      <th>Organisme :</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let partitipant of participantsNational">
+                      <td>{{partitipant.nom}}</td>
+                      <td>{{partitipant.prenom}}</td>
+                      <td>{{partitipant.email}}</td>
+                      <td>{{partitipant.tel}}</td>
+                      <td>{{partitipant.profil.libelle}}</td>
+                      <td>{{partitipant.organisme.libelle}}</td>
+                      <td>
+                        <!-- Example single danger button -->
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-default">Action</button>
+                          <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                            <span class="sr-only">Toggle Dropdown</span>
+                            <div class="dropdown-menu" role="menu">
+                              <a class="dropdown-item" (click)="onOpenModal(partitipant,'edit')">Edit</a>
+                              <a class="dropdown-item" (click)="onOpenModal(partitipant,'editProfile')">Change Profile</a>
+                              <a class="dropdown-item" (click)="onOpenModal(partitipant,'editOrganisme')">Change Organisme</a>
+                              <a class="dropdown-item"(click)="onOpenModal(partitipant,'delete')">Delete</a>
+                            </div>
+                          </button>
+                        </div>
+                    </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    
+    <!--<section class="content" >
+        <div class="container-fluid" id ="main-container">
+          <div class="row">
+            <div class="col-12">
+              <div class="card ">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <i class="far fa-chart-bar"></i>
+                    List of Participant International
+                  </h3>
+                  <div class="card-tools">
+                    <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                      <form class="form-inline my-2 my-lg-0">
+                        <input type="search" (ngModelChange)="searchPays(key.value)" #key="ngModel" name="key" ngModel id="searchName" class="form-control mr-sm-2" placeholder="Search Organisme..." required>
+                     </form>
+                      <button id="test" (click)="onOpenModalTwo(null,'add')" class ='btn btn-primary active' type="button"  data-toggle="modal" data-target="#CreateTeam"><i class="fas fa-plus-circle"></i> Ajouter</button>
+                    </div>
+                  </div>
+                
+                <div class="card-body">
+                  <table #dataTable2 class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Nom:</th>
+                        <th>Prenom :</th>
+                        <th>Email :</th>
+                        <th>N° Tel :</th>
+                        <th>Profile :</th>
+                        <th>Pays :</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let participant of participantsInternational">
+                        <td>{{partitipant.nom}}</td>
+                        <td>{{partitipant.prenom}}</td>
+                        <td>{{partitipant.email}}</td>
+                        <td>{{partitipant.tel}}</td>
+                        <td>{{partitipant.profil.libelle}}</td>
+                        <td>{{partitipant.pays.libelle}}</td>
+                        <td>
+                          
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-default">Action</button>
+                            <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                              <span class="sr-only">Toggle Dropdown</span>
+                              <div class="dropdown-menu" role="menu">
+                                <a class="dropdown-item" (click)="onOpenModalTwo(partitipant,'edit')">Edit</a>
+                                <a class="dropdown-item"(click)="onOpenModalTwo(partitipant,'delete')">Delete</a>
+                              </div>
+                            </button>
+                          </div>
+                      </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                
+              </div>
+              
+            
+            </div>
+            
+          </div>
+          
+        </div>
+        </div>
+        
+      </section>-->
+    <!-- /.content -->
+  </div>
+
+
+  <div class="modal fade" id="addParticipantNationalModal" tabindex="-1" role="dialog" aria-labelledby="addParticipantNationalModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="addParticipantNationalModalLabel">Add Participant National</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form #addForm="ngForm" (ngSubmit)="onAddParticipantNational(addForm)">
+            <div class="form-group">
+               <label for="name">Nom* : </label>
+               <input type="text" ngModel name="nom" class="form-control" id="nom" placeholder="First name" required>
+            </div>
+            <div class="form-group">
+              <label for="name">Prénom* : </label>
+              <input type="text" ngModel name="prenom" class="form-control" id="prenom" placeholder="Last name" required>
+           </div>
+           <div class="form-group">
+            <label for="name">Email* : </label>
+            <input type="text" ngModel name="email" class="form-control" id="email" placeholder="Email" required>
+           </div>
+            <div class="form-group">
+             <label for="name">N°Tél* : </label>
+             <input type="number" ngModel name="tel" class="form-control" id="tel" placeholder="Numéro de Téléphone" required>
+            </div>
+            <div class="form-group">
+                <label>Organisme* : </label>
+                <select class="custom-select" ngModel name="organisme">
+                    <option *ngFor="let organisme of organismes"  [ngValue]="organisme">{{organisme.libelle}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Libéllé du Profile* : </label>
+                <input type="text" ngModel name="libelle" class="form-control" id="libelle" placeholder="Ou cas ou vous ne trouvez pas le Profile cherché" >
+                <select class="custom-select" ngModel name="profil">
+                    <option *ngFor="let profil of profiles"  [ngValue]="profil">{{profil.libelle}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Username* : </label>
+                <input type="text" ngModel name="username" class="form-control" id="username" placeholder="Username" required>
+             </div>
+             <div class="form-group">
+                <label for="name">Passsword* : </label>
+                <input type="text" ngModel name="password" class="form-control" id="password" placeholder="Passsword" required>
+             </div>
+
+            <div class="modal-footer">
+               <button type="button" id="add-participantnational-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+            </div>
+            </form>
+         </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="updateParticipantNationalModal" tabindex="-1" role="dialog" aria-labelledby="ParticipantNationalEditModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="updateParticipantNationalModalLabel">Edit Participant National d'ID: {{editParticipantNational?.id}}</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <form #editForm = "ngForm">
+                <input type="hidden" ngModel={{editParticipantNational?.id}} name="id" class="form-control" id="id">
+                <div class="form-group">
+                  <label for="name">Nom : </label>
+                  <input type="text" ngModel={{editParticipantNational?.nom}} name="nom" class="form-control" id="nom" placeholder="First name">
+               </div>
+               <div class="form-group">
+                 <label for="name">Prénom : </label>
+                 <input type="text" ngModel={{editParticipantNational?.prenom}} name="prenom" class="form-control" id="prenom" placeholder="Last name" >
+              </div>
+              <div class="form-group">
+               <label for="name">Email : </label>
+               <input type="text" ngModel={{editParticipantNational?.email}} name="email" class="form-control" id="email" placeholder="Email">
+              </div>
+               <div class="form-group">
+                <label for="name">N°Tél : </label>
+                <input type="number" ngModel={{editParticipantNational?.tel}} name="tel" class="form-control" id="tel" placeholder="Numéro de Téléphone" >
+               </div>
+                <div class="modal-footer">
+                    <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                    <button (click)="onUpdateParticipantNational(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                </div>
+               </form>
+            </div>
+         </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="updateParticipantNationalProfileModal" tabindex="-1" role="dialog" aria-labelledby="ParticipantNationalProfileEditModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="updateParticipantNationalProfileModalLabel">Edit Profile : {{editParticipantNational?.profil.libelle}}</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <form #editForm2 = "ngForm">
+                <input type="hidden" ngModel="{{editParticipantNational?.id}}" name="id" class="form-control" id="id">
+            <div class="form-group" required>
+              <label>Profile : </label>
+              <select ngModel="{{editParticipantNational?.profil}}" name="profil" class="custom-select">
+                <option *ngFor="let profil of profiles"  [ngValue]="profil">{{profil.libelle}}</option>
+              </select>
+            </div>
+            
+                <div class="modal-footer">
+                    <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                    <button (click)="onUpdateParticipantNationalProfile(editForm2.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                </div>
+               </form>
+            </div>
+         </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="updateParticipantNationalOrganismeModal" tabindex="-1" role="dialog" aria-labelledby="ParticipantNationalOrganismeEditModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="updateParticipantNationalOrganismeModalLabel">Edit Organisme : {{editParticipantNational?.organisme.libelle}}</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <form #editForm3 = "ngForm">
+                <input type="hidden" ngModel="{{editParticipantNational?.id}}" name="id" class="form-control" id="id">
+            <div class="form-group" required>
+              <label>Organisme : </label>
+              <select ngModel="{{editParticipantNational?.organisme}}" name="organisme" class="custom-select">
+                <option *ngFor="let organisme of organismes"  [ngValue]="organisme">{{organisme.libelle}}</option>
+              </select>
+            </div>
+            
+                <div class="modal-footer">
+                    <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                    <button (click)="onUpdateParticipantNationalOrganisme(editForm3.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                </div>
+               </form>
+            </div>
+         </div>
+      </div>
+    </div>
+    <div class="modal fade" id="deleteParticipantNationalModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="deleteModelLabel">Delete Participant : {{deleteParticipantNational?.nom}} {{deleteParticipantNational?.prenom}}</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <p>Are you sure you want to delete Participant {{deleteParticipantNational?.nom}} {{deleteParticipantNational?.prenom}}</p>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                  <button (click)="onDeleteParticipantNational(deleteParticipantNational?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+               </div>
+            </div>
+         </div>
+      </div>
+    </div>
