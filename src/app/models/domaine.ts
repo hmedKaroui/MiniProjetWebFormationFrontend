@@ -1,4 +1,6 @@
 export class Domaine {
-    id : number ;
-    libelle:string;
+    constructor(
+    public libelle:string,
+    public id? : number )
+    {}
 }

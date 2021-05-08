@@ -3,12 +3,14 @@ import { Profile } from "./profile";
 import { Session } from "./session";
 
 export class ParticipantInternational {
-    id : number ;
-    nom : string;
-    prenom:string;
-    email:string;
-    tel:number;
-    profil:Profile;
-    pays:Pays;
-    sessions:Session[] |undefined;
+    constructor (
+    public nom : string,
+    public prenom:string,
+    public email:string,
+    public tel:number,
+    public profil:Profile,
+    public pays:Pays,
+    public sessions ?:Session[] |undefined,
+    public  id? : number
+    ) {}
 }

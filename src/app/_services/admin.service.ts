@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Domaine } from '../models/domaine';
+import { Formateur } from '../models/formateur';
 import { Organisme } from '../models/organisme';
+import { ParticipantInternational } from '../models/participantInternational';
 import { ParticipantNational } from '../models/participantNational';
 import { Pays } from '../models/pays';
 import { Profile } from '../models/profile';
@@ -42,6 +45,19 @@ export class AdminService {
     return this.http.delete<void>(API_URL+`/organismes/delete/${organismeId}`);
   }
 
+  //Domaine services
+  public getAllDomaine():Observable<Domaine[]> {
+    return this.http.get<[Domaine]>(API_URL+'/domaines');
+  }
+  public createDomaine(domaine:Domaine):Observable<Domaine> {
+   return  this.http.post<Domaine>(API_URL+'/domaines/add',domaine);
+  }
+  public updateDomaine(domaineId : number , domaine :Domaine):Observable<Domaine> {
+    return this.http.put<Domaine>(API_URL+`/domaines/update/${domaineId}`,domaine);
+  }
+  public deleteDomaine(domaineId:number):Observable<void> {
+    return this.http.delete<void>(API_URL+`/domaines/delete/${domaineId}`);
+  }
   //Profile services
 
   public getAllProfile():Observable<Profile[]> {
@@ -67,4 +83,42 @@ export class AdminService {
   public deleteParticipantNational(participantNationalId:number):Observable<void> {
     return this.http.delete<void>(API_URL+`/participantsNational/delete/${participantNationalId}`);
   }
+
+  //Participant International services
+  public getAllParticipantInternational():Observable<ParticipantInternational[]> {
+    return this.http.get<[ParticipantInternational]>(API_URL+'/participantsInternational');
+  }
+  public createParticipantInternational(participantInternational:ParticipantInternational):Observable<ParticipantInternational> {
+   return  this.http.post<ParticipantInternational>(API_URL+'/participantsInternational/add',participantInternational);
+  }
+  public updateParticipantInternational(participantInternationalId : number , participantInternational :ParticipantInternational):Observable<ParticipantInternational> {
+    return this.http.put<ParticipantInternational>(API_URL+`/participantsInternational/update/${participantInternationalId}`,participantInternational);
+  }
+  public updateParticipantInternationalProfile(participantInternationalId : number , participantInternational :ParticipantInternational):Observable<ParticipantInternational> {
+    return this.http.put<ParticipantInternational>(API_URL+`/participantsInternational/updateProfile/${participantInternationalId}`,participantInternational);
+  }
+  public updateParticipantInternationalPays(participantInternationalId : number , participantInternational :ParticipantInternational):Observable<ParticipantInternational> {
+    return this.http.put<ParticipantInternational>(API_URL+`/participantsInternational/updatePays/${participantInternationalId}`,participantInternational);
+  }
+  public deleteParticipantInternational(participantInternationalId:number):Observable<void> {
+    return this.http.delete<void>(API_URL+`/participantsInternational/delete/${participantInternationalId}`);
+  }
+
+  //Formateur Services
+  public getAllFormateur():Observable<Formateur[]> {
+    return this.http.get<[Formateur]>(API_URL+'/formateurs');
+  }
+  public createFormateur(formateur:Formateur):Observable<Formateur> {
+   return  this.http.post<Formateur>(API_URL+'/formateurs/add',formateur);
+  }
+  public updateFormateur(formateurId : number , formateur :Formateur):Observable<Formateur> {
+    return this.http.put<Formateur>(API_URL+`/formateurs/update/${formateurId}`,formateur);
+  }
+  public updateFormateurOrganisme(formateurId : number , formateur :Formateur):Observable<Formateur> {
+    return this.http.put<Formateur>(API_URL+`/formateurs/updateOrganisme/${formateurId}`,formateur);
+  }
+  public deleteFormateur(formateurId:number):Observable<void> {
+    return this.http.delete<void>(API_URL+`/formateurs/delete/${formateurId}`);
+  }
+
 }

@@ -23,6 +23,8 @@ import { NavbarComponent } from './component/partials/navbar/navbar.component';
 import { PaysManagementComponent } from './component/pages/admin/pays-management/pays-management.component';
 import { OrganismeManagamentComponent } from './component/pages/admin/organisme-managament/organisme-managament.component';
 import { ParticipantManagementComponent } from './component/pages/admin/participant-management/participant-management.component';
+import { FormateurManagementComponent } from './component/pages/admin/formateur-management/formateur-management.component';
+import { DomaineManagementComponent } from './component/pages/admin/domaine-management/domaine-management.component';
 
 
 
@@ -44,7 +46,9 @@ import { ParticipantManagementComponent } from './component/pages/admin/particip
     HomeLayoutComponent,
     PaysManagementComponent,
     OrganismeManagamentComponent,
-    ParticipantManagementComponent
+    ParticipantManagementComponent,
+    FormateurManagementComponent,
+    DomaineManagementComponent,
     
   ],
   imports: [

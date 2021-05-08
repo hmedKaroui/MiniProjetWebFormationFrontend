@@ -2,13 +2,14 @@ import { Organisme } from "./organisme";
 import { Session } from "./session";
 
 export class Formateur {
-    id : number ;
-    nom:string;
-    prenom:string;
-    email:String;
-    tel:number;
-    type:string;
-    organisme:Organisme;
-    sessions: Session[] |undefined;
-
+    constructor( 
+    public nom:string,
+    public prenom:string,
+    public email:String,
+    public tel:number,
+    public type:string,
+    public organisme :Organisme,
+    public sessions? : Session[] |undefined,
+    public id? : number
+    ) {}
 }

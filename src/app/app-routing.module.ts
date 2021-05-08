@@ -17,6 +17,8 @@ import { UserMiddleware } from './middlewares/user-middleware';
 import { PaysManagementComponent } from './component/pages/admin/pays-management/pays-management.component';
 import { OrganismeManagamentComponent } from './component/pages/admin/organisme-managament/organisme-managament.component';
 import { ParticipantManagementComponent } from './component/pages/admin/participant-management/participant-management.component';
+import { FormateurManagementComponent } from './component/pages/admin/formateur-management/formateur-management.component';
+import { DomaineManagementComponent } from './component/pages/admin/domaine-management/domaine-management.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -29,6 +31,8 @@ const routes: Routes = [
       { path :'pays_management' , component:PaysManagementComponent},
       { path :'organisme_management', component : OrganismeManagamentComponent},
       { path :'participant_management',component : ParticipantManagementComponent},
+      { path :'formateur_management' , component : FormateurManagementComponent},
+      { path: 'domaine_management' , component : DomaineManagementComponent},
     ]
   },
   {

@@ -26,7 +26,7 @@
                 <div class="card-tools">
                   <div class="btn-group" id="realtime" data-toggle="btn-toggle">
                     <form class="form-inline my-2 my-lg-0">
-                      <input type="search" (ngModelChange)="searchParticipantNational(key.value)" #key="ngModel" name="key" ngModel id="searchName" class="form-control mr-sm-2" placeholder="Search Organisme..." required>
+                      <input type="search" (ngModelChange)="searchParticipantNational(key.value)" #key="ngModel" name="key" ngModel id="searchName" class="form-control mr-sm-2" placeholder="Search Particpant National..." required>
                    </form>
                     <button id="test" (click)="onOpenModal(null,'add')" class ='btn btn-primary active' type="button"  data-toggle="modal" data-target="#CreateTeam"><i class="fas fa-plus-circle"></i> Ajouter</button>
                   </div>
@@ -85,7 +85,7 @@
       <!-- /.container-fluid -->
     </section>
     
-    <!--<section class="content" >
+    <section class="content" >
         <div class="container-fluid" id ="main-container">
           <div class="row">
             <div class="col-12">
@@ -98,7 +98,7 @@
                   <div class="card-tools">
                     <div class="btn-group" id="realtime" data-toggle="btn-toggle">
                       <form class="form-inline my-2 my-lg-0">
-                        <input type="search" (ngModelChange)="searchPays(key.value)" #key="ngModel" name="key" ngModel id="searchName" class="form-control mr-sm-2" placeholder="Search Organisme..." required>
+                        <input type="search" (ngModelChange)="searchParticipantInternational(keyI.value)" #keyI="ngModel" name="keyI" ngModel id="searchName2" class="form-control mr-sm-2" placeholder="Search Participant Inter..." required>
                      </form>
                       <button id="test" (click)="onOpenModalTwo(null,'add')" class ='btn btn-primary active' type="button"  data-toggle="modal" data-target="#CreateTeam"><i class="fas fa-plus-circle"></i> Ajouter</button>
                     </div>
@@ -118,13 +118,13 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let participant of participantsInternational">
-                        <td>{{partitipant.nom}}</td>
-                        <td>{{partitipant.prenom}}</td>
-                        <td>{{partitipant.email}}</td>
-                        <td>{{partitipant.tel}}</td>
-                        <td>{{partitipant.profil.libelle}}</td>
-                        <td>{{partitipant.pays.libelle}}</td>
+                      <tr *ngFor="let participantI of participantsInternational">
+                        <td>{{participantI.nom}}</td>
+                        <td>{{participantI.prenom}}</td>
+                        <td>{{participantI.email}}</td>
+                        <td>{{participantI.tel}}</td>
+                        <td>{{participantI.profil.libelle}}</td>
+                        <td>{{participantI.pays.libelle}}</td>
                         <td>
                           
                           <div class="btn-group">
@@ -132,8 +132,10 @@
                             <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
                               <span class="sr-only">Toggle Dropdown</span>
                               <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" (click)="onOpenModalTwo(partitipant,'edit')">Edit</a>
-                                <a class="dropdown-item"(click)="onOpenModalTwo(partitipant,'delete')">Delete</a>
+                                <a class="dropdown-item" (click)="onOpenModalTwo(participantI,'edit')">Edit</a>
+                                <a class="dropdown-item" (click)="onOpenModalTwo(participantI,'editProfile')">Change Profile</a>
+                                <a class="dropdown-item" (click)="onOpenModalTwo(participantI,'editPays')">Change Pays</a>
+                                <a class="dropdown-item"(click)="onOpenModalTwo(participantI,'delete')">Delete</a>
                               </div>
                             </button>
                           </div>
@@ -153,10 +155,9 @@
         </div>
         </div>
         
-      </section>-->
+      </section>
     <!-- /.content -->
   </div>
-
 
   <div class="modal fade" id="addParticipantNationalModal" tabindex="-1" role="dialog" aria-labelledby="addParticipantNationalModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -219,6 +220,67 @@
     </div>
     </div>
 
+    <div class="modal fade" id="addParticipantInternationalModal" tabindex="-1" role="dialog" aria-labelledby="addParticipantInternationalModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+           <div class="modal-header">
+              <h5 class="modal-title" id="addParticipantInternationalModalLabel">Add Participant International</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+           </div>
+           <div class="modal-body">
+              <form #addForm2="ngForm" (ngSubmit)="onAddParticipantInternational(addForm2)">
+              <div class="form-group">
+                 <label for="name">Nom* : </label>
+                 <input type="text" ngModel name="nom" class="form-control" id="nomI" placeholder="First name" required>
+              </div>
+              <div class="form-group">
+                <label for="name">Prénom* : </label>
+                <input type="text" ngModel name="prenom" class="form-control" id="prenomI" placeholder="Last name" required>
+             </div>
+             <div class="form-group">
+              <label for="name">Email* : </label>
+              <input type="text" ngModel name="email" class="form-control" id="emailI" placeholder="Email" required>
+             </div>
+              <div class="form-group">
+               <label for="name">N°Tél* : </label>
+               <input type="number" ngModel name="tel" class="form-control" id="telI" placeholder="Numéro de Téléphone" required>
+              </div>
+              <div class="form-group">
+                  <label>Pays* : </label>
+                  <select class="custom-select" ngModel name="pays">
+                      <option *ngFor="let pay of pays"  [ngValue]="pay">{{pay.libelle}}</option>
+                  </select>
+              </div>
+  
+              <div class="form-group">
+                  <label for="name">Libéllé du Profile* : </label>
+                  <input type="text" ngModel name="libelle" class="form-control" id="libelleI" placeholder="Ou cas ou vous ne trouvez pas le Profile cherché" >
+                  <select class="custom-select" ngModel name="profil">
+                      <option *ngFor="let profil of profiles"  [ngValue]="profil">{{profil.libelle}}</option>
+                  </select>
+              </div>
+  
+              <div class="form-group">
+                  <label for="name">Username* : </label>
+                  <input type="text" ngModel name="username" class="form-control" id="usernameI" placeholder="Username" required>
+               </div>
+               <div class="form-group">
+                  <label for="name">Passsword* : </label>
+                  <input type="text" ngModel name="password" class="form-control" id="passwordI" placeholder="Passsword" required>
+               </div>
+  
+              <div class="modal-footer">
+                 <button type="button" id="add-participantinternational-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                 <button [disabled]="addForm2.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+              </div>
+              </form>
+           </div>
+        </div>
+      </div>
+      </div>
+
     <div class="modal fade" id="updateParticipantNationalModal" tabindex="-1" role="dialog" aria-labelledby="ParticipantNationalEditModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
          <div class="modal-content">
@@ -257,6 +319,44 @@
       </div>
     </div>
 
+    <div class="modal fade" id="updateParticipantInternationalModal" tabindex="-1" role="dialog" aria-labelledby="ParticipantInternationalEditModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="updateParticipantInternationalModalLabel">Edit Participant International d'ID: {{editParticipantInternational?.id}}</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <form #editForm1 = "ngForm">
+                <input type="hidden" ngModel={{editParticipantInternational?.id}} name="id" class="form-control" id="idI">
+                <div class="form-group">
+                  <label for="name">Nom : </label>
+                  <input type="text" ngModel={{editParticipantInternational?.nom}} name="nom" class="form-control" id="nomI" placeholder="First name">
+               </div>
+               <div class="form-group">
+                 <label for="name">Prénom : </label>
+                 <input type="text" ngModel={{editParticipantInternational?.prenom}} name="prenom" class="form-control" id="prenomI" placeholder="Last name" >
+              </div>
+              <div class="form-group">
+               <label for="name">Email : </label>
+               <input type="text" ngModel={{editParticipantInternational?.email}} name="email" class="form-control" id="emailI" placeholder="Email">
+              </div>
+               <div class="form-group">
+                <label for="name">N°Tél : </label>
+                <input type="number" ngModel={{editParticipantInternational?.tel}} name="tel" class="form-control" id="telI" placeholder="Numéro de Téléphone" >
+               </div>
+                <div class="modal-footer">
+                    <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                    <button (click)="onUpdateParticipantInternational(editForm1.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                </div>
+               </form>
+            </div>
+         </div>
+      </div>
+    </div>
+
     <div class="modal fade" id="updateParticipantNationalProfileModal" tabindex="-1" role="dialog" aria-labelledby="ParticipantNationalProfileEditModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
          <div class="modal-content">
@@ -279,6 +379,35 @@
                 <div class="modal-footer">
                     <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
                     <button (click)="onUpdateParticipantNationalProfile(editForm2.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                </div>
+               </form>
+            </div>
+         </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="updateParticipantInternationalProfileModal" tabindex="-1" role="dialog" aria-labelledby="ParticipantInternationalProfileEditModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="updateParticipantInternationalProfileModalLabel">Edit Profile : {{editParticipantInternational?.profil.libelle}}</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <form #editForm4 = "ngForm">
+                <input type="hidden" ngModel="{{editParticipantInternational?.id}}" name="id" class="form-control" id="idI">
+            <div class="form-group" required>
+              <label>Profile : </label>
+              <select ngModel="{{editParticipantInternational?.profil}}" name="profil" class="custom-select">
+                <option *ngFor="let profil of profiles"  [ngValue]="profil">{{profil.libelle}}</option>
+              </select>
+            </div>
+            
+                <div class="modal-footer">
+                    <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                    <button (click)="onUpdateParticipantInternationalProfile(editForm4.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
                 </div>
                </form>
             </div>
@@ -314,6 +443,36 @@
          </div>
       </div>
     </div>
+
+    <div class="modal fade" id="updateParticipantInternationalPaysModal" tabindex="-1" role="dialog" aria-labelledby="ParticipantInternationalOrganismeEditModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="updateParticipantInternationalOrganismeModalLabel">Edit Pays : {{editParticipantInternational?.pays.libelle}}</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <form #editForm5 = "ngForm">
+                <input type="hidden" ngModel="{{editParticipantInternational?.id}}" name="id" class="form-control" id="idI">
+            <div class="form-group" required>
+              <label>Organisme : </label>
+              <select ngModel="{{editParticipantInternational?.pays}}" name="pays" class="custom-select">
+                <option *ngFor="let pay of pays"  [ngValue]="pay">{{pay.libelle}}</option>
+              </select>
+            </div>
+            
+                <div class="modal-footer">
+                    <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                    <button (click)="onUpdateParticipantInternationalPays(editForm5.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                </div>
+               </form>
+            </div>
+         </div>
+      </div>
+    </div>
+
     <div class="modal fade" id="deleteParticipantNationalModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
          <div class="modal-content">
@@ -328,6 +487,26 @@
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                   <button (click)="onDeleteParticipantNational(deleteParticipantNational?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+               </div>
+            </div>
+         </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="deleteParticipantInternationalModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="deleteModelLabel">Delete Participant : {{deleteParticipantInternational?.nom}} {{deleteParticipantInternational?.prenom}}</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <p>Are you sure you want to delete Participant {{deleteParticipantInternational?.nom}} {{deleteParticipantInternational?.prenom}}</p>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                  <button (click)="onDeleteParticipantInternational(deleteParticipantInternational?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
                </div>
             </div>
          </div>
