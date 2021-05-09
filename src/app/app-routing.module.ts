@@ -19,6 +19,8 @@ import { OrganismeManagamentComponent } from './component/pages/admin/organisme-
 import { ParticipantManagementComponent } from './component/pages/admin/participant-management/participant-management.component';
 import { FormateurManagementComponent } from './component/pages/admin/formateur-management/formateur-management.component';
 import { DomaineManagementComponent } from './component/pages/admin/domaine-management/domaine-management.component';
+import { FormationManagamentComponent } from './component/pages/admin/formation-managament/formation-managament.component';
+import { SessionManagementComponent } from './component/pages/admin/session-management/session-management.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -33,6 +35,8 @@ const routes: Routes = [
       { path :'participant_management',component : ParticipantManagementComponent},
       { path :'formateur_management' , component : FormateurManagementComponent},
       { path: 'domaine_management' , component : DomaineManagementComponent},
+      { path: 'formation_management' , component: FormationManagamentComponent},
+      { path :'session_management' , component : SessionManagementComponent}
     ]
   },
   {

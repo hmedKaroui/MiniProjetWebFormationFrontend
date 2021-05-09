@@ -25,6 +25,8 @@ import { OrganismeManagamentComponent } from './component/pages/admin/organisme-
 import { ParticipantManagementComponent } from './component/pages/admin/participant-management/participant-management.component';
 import { FormateurManagementComponent } from './component/pages/admin/formateur-management/formateur-management.component';
 import { DomaineManagementComponent } from './component/pages/admin/domaine-management/domaine-management.component';
+import { FormationManagamentComponent } from './component/pages/admin/formation-managament/formation-managament.component';
+import { SessionManagementComponent } from './component/pages/admin/session-management/session-management.component';
 
 
 
@@ -49,7 +51,9 @@ import { DomaineManagementComponent } from './component/pages/admin/domaine-mana
     ParticipantManagementComponent,
     FormateurManagementComponent,
     DomaineManagementComponent,
-    
+    FormationManagamentComponent,
+    SessionManagementComponent,
+  
   ],
   imports: [
     BrowserModule,

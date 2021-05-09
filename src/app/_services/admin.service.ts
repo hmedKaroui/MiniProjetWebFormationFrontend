@@ -3,11 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Domaine } from '../models/domaine';
 import { Formateur } from '../models/formateur';
+import { Formation } from '../models/formation';
 import { Organisme } from '../models/organisme';
 import { ParticipantInternational } from '../models/participantInternational';
 import { ParticipantNational } from '../models/participantNational';
 import { Pays } from '../models/pays';
 import { Profile } from '../models/profile';
+import { Session } from '../models/session';
 
 const API_URL = 'http://localhost:8090/admin';
 @Injectable({
@@ -35,6 +37,9 @@ export class AdminService {
   public getAllOrganisme():Observable<Organisme[]> {
     return this.http.get<[Organisme]>(API_URL+'/organismes');
   }
+  public getOrganismeById(organismeId):Observable<Organisme> {
+    return this.http.get<Organisme>(API_URL+`/organismes/${organismeId}`);
+  }
   public createOrganisme(organisme:Organisme):Observable<Organisme> {
    return  this.http.post<Organisme>(API_URL+'/organismes/add',organisme);
   }
@@ -48,6 +53,9 @@ export class AdminService {
   //Domaine services
   public getAllDomaine():Observable<Domaine[]> {
     return this.http.get<[Domaine]>(API_URL+'/domaines');
+  }
+  public gatDomaineById(domaineId:number):Observable<Domaine> {
+    return this.http.get<Domaine>(API_URL+`/domaines/${domaineId}`);
   }
   public createDomaine(domaine:Domaine):Observable<Domaine> {
    return  this.http.post<Domaine>(API_URL+'/domaines/add',domaine);
@@ -108,6 +116,9 @@ export class AdminService {
   public getAllFormateur():Observable<Formateur[]> {
     return this.http.get<[Formateur]>(API_URL+'/formateurs');
   }
+  public getFormateurById(formateurId:number):Observable<Formateur> {
+    return this.http.get<Formateur>(API_URL+`/formateurs/${formateurId}`);
+  }
   public createFormateur(formateur:Formateur):Observable<Formateur> {
    return  this.http.post<Formateur>(API_URL+'/formateurs/add',formateur);
   }
@@ -121,4 +132,32 @@ export class AdminService {
     return this.http.delete<void>(API_URL+`/formateurs/delete/${formateurId}`);
   }
 
+
+  //formation services
+  public getAllFormation():Observable<Formation[]> {
+    return this.http.get<[Formation]>(API_URL+'/formations');
+  }
+  public createFormation(formation:Formation):Observable<Formation> {
+   return  this.http.post<Formation>(API_URL+'/formations/add',formation);
+  }
+  public updateFormation(formationId : number , formation :Formation):Observable<Formation> {
+    return this.http.put<Formation>(API_URL+`/formations/update/${formationId}`,formation);
+  }
+  public deleteFormation(formationId:number):Observable<void> {
+    return this.http.delete<void>(API_URL+`/formations/delete/${formationId}`);
+  }
+
+  //Session Services
+  public getAllSessions():Observable<Session[]> {
+    return this.http.get<[Session]>(API_URL+'/sessions');
+  }
+  public createSession(session:Session):Observable<Session> {
+   return  this.http.post<Session>(API_URL+'/sessions/add',session);
+  }
+  public updateSession(sessionId : number , session :Session):Observable<Session> {
+    return this.http.put<Session>(API_URL+`/sessions/update/${sessionId}`,session);
+  }
+  public deleteSession(formationId:number):Observable<void> {
+    return this.http.delete<void>(API_URL+`/sessions/delete/${formationId}`);
+  }
 }
