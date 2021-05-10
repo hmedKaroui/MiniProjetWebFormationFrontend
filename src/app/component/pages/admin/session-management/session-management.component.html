@@ -119,25 +119,25 @@
             <div class="form-group">
               <label>Organisme* : </label>
               <input type="text" ngModel name="libelle" class="form-control" id="libelle" placeholder="Ou cas ou vous ne trouvez pas le organisme cherché" >
-              <select class="custom-select" ngModel name="organisme">
+              <select class="custom-select" ngModel name="organisme" required>
                   <option *ngFor="let organisme of organismes"  [ngValue]="organisme">{{organisme.libelle}}</option>
               </select>
             </div>
             <div class="form-group">
               <label>Formation : </label>
-              <select class="custom-select" ngModel name="formations">
+              <select class="custom-select" ngModel name="formations" required>
                   <option *ngFor="let formation of formations"  [ngValue]="formation">{{formation.titre}}</option>
               </select>
             </div>
             <div class="form-group">
               <label>Particpant National * : </label>
-              <select class="custom-select" ngModel name="participantsN">
+              <select class="custom-select" ngModel name="participantsN" required>
                   <option *ngFor="let participantN of participantsNational"  [ngValue]="participantN">{{participantN.prenom}} {{participantN.nom}}</option>
               </select>
             </div>
             <div class="form-group">
               <label>Particpant International * : </label>
-              <select class="custom-select" ngModel name="participantsI">
+              <select class="custom-select" ngModel name="participantsI" required>
                   <option *ngFor="let participantI of participantsInternational"  [ngValue]="participantI">{{participantI.prenom}} {{participantI.nom}}</option>
               </select>
             </div>

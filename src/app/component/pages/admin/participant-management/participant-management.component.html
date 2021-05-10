@@ -188,7 +188,7 @@
             </div>
             <div class="form-group">
                 <label>Organisme* : </label>
-                <select class="custom-select" ngModel name="organisme">
+                <select class="custom-select" ngModel name="organisme" required>
                     <option *ngFor="let organisme of organismes"  [ngValue]="organisme">{{organisme.libelle}}</option>
                 </select>
             </div>
@@ -249,7 +249,7 @@
               </div>
               <div class="form-group">
                   <label>Pays* : </label>
-                  <select class="custom-select" ngModel name="pays">
+                  <select class="custom-select" ngModel name="pays" required>
                       <option *ngFor="let pay of pays"  [ngValue]="pay">{{pay.libelle}}</option>
                   </select>
               </div>
