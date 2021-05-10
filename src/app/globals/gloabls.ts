@@ -14,6 +14,13 @@ export class AppGlobals {
       return (data[0]);
       }
 
+    public getUserId() {
+      const tmp = this.getTokenData().split(";");
+      if(tmp !== null) {
+        return JSON.parse(tmp[0]).id // to get the id of the authentificated actor
+      }
+      return [];
+    }
     getUserRoles() {
         const tmp = this.getTokenData().split(";");
         if(tmp !== null) {

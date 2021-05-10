@@ -1,5 +1,157 @@
-<div class="container">
-    <header class="jumbotron">
-      <p>{{ content }}</p>
-    </header>
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1> {{participant.prenom}} {{participant.nom}}</h1>
+      </div>
+
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+<section class="content" >
+    <div class="container-fluid" id ="main-container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card ">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="far fa-chart-bar"></i>
+                Informations about participant:
+              </h3>
+              <div class="card-tools">
+                <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                  <button id="test" (click)="onOpenModal()" class ='btn btn-primary active' type="button"  data-toggle="modal" data-target="#CreateTeam">Modifier Cerdentials</button>
+                </div>
+              </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+            </div>
+            <!-- /.card-body -->
+            <div><p><B>Nom & Prénom :</B>  {{participant.nom}} {{participant.prenom}}</p></div>
+            <div><p><B>email: </B> {{participant.email}}</p></div>
+            <div><p><B>N° télephone :</B>  {{participant.tel}}</p></div>
+            <div><p><B>Profile :</B> {{participant.profil.libelle}}</p></div>
+          </div>
+          <!-- /.card -->
+          
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Sessions : </h1>
+        </div>
+
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content" >
+    <div class="container-fluid" id ="main-container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card ">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="far fa-chart-bar"></i>
+                List of Sesssions for current Formation 
+              </h3>
+              <div class="card-tools">
+                <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                  <form class="form-inline my-2 my-lg-0">
+                    <input type="search" (ngModelChange)="searchSessions(key.value)" #key="ngModel" name="key" ngModel id="searchName" class="form-control mr-sm-2" placeholder="Search Sessions..." required>
+                 </form>
+                </div>
+              </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table #dataTable class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                      <th>Lieu</th>
+                      <th>Date debut</th>
+                      <th>Date fin</th>
+                      <th>Nombre de participant</th>
+                      <th>Formateur</th>
+                      <th>Organisme</th>
+                      <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let session of sessions">
+                      <td>{{session.lieu}}</td>
+                      <td>{{session.dateDebut | date: 'dd-MM-yyyy'}}</td>
+                      <td>{{session.dateFin | date: 'dd-MM-yyyy'}}</td>
+                      <td>{{session.nbParticipant}}</td>
+                      <td>{{session.formateur.prenom}} {{session.formateur.nom}}</td>
+                      <td>{{session.organisme.libelle}}</td>
+                      <td>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-default">Action</button>
+                          <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                            <span class="sr-only">Toggle Dropdown</span>
+                            <div class="dropdown-menu" role="menu">
+                              <a class="dropdown-item" (click)="onEnrollSession(session.id)">Unenroll</a>
+                            </div>
+                          </button>
+                        </div>
+                        
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <div class="modal fade" id="updateFormationModal" tabindex="-1" role="dialog" aria-labelledby="EditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="updateModalLabel">Edit User: {{editUser?.username}}</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <form #editForm = "ngForm">
+              <input type="hidden" ngModel={{editUser?.id}} name="id" class="form-control" id="id">
+              <input type="hidden" ngModel={{editUser?.email}} name="email" class="form-control" id="email" >
+              <input type="hidden" ngModel={{editUser?.username}} name="username" class="form-control" id="username">
+              
+            <div class="form-group">
+              <label for="name">Password : </label>
+              <input type="password" ngModel name="password" id="password" class="form-control" placeholder="Enter Password" minlength="6">
+            </div>
+            <div class="form-group">
+              <label for="name">Verifie Password : </label>
+              <input type="password" ngModel name="vPassword" id="vPassword" class="form-control" placeholder="Verifie password" minlength="6">
+            </div>
+              <div class="modal-footer">
+                  <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                  <button (click)="onUpdateUser(editForm)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+              </div>
+             </form>
+          </div>
+       </div>
+    </div>
   </div>

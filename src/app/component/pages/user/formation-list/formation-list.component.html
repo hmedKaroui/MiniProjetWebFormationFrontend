@@ -1,0 +1,84 @@
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Formations</h1>
+          </div>
+
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content" >
+      <div class="container-fluid" id ="main-container">
+        <div class="row">
+          <div class="col-12">
+            <div class="card ">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  List of Formations
+                </h3>
+                <div class="card-tools">
+                  <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                    <form class="form-inline my-2 my-lg-0">
+                      <input type="search" (ngModelChange)="searchFormations(key.value)" #key="ngModel" name="key" ngModel id="searchName" class="form-control mr-sm-2" placeholder="Search Formation..." required>
+                   </form>
+                  </div>
+                </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table #dataTable class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Type</th>
+                        <th>Nombre de Session</th>
+                        <th>Date debut</th>
+                        <th>Date fin</th>
+                        <th>Budget</th>
+                        <th>Domaine</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let formation of formations">
+                        <td>{{formation.titre}}</td>
+                        <td>{{formation.typeFormation}}</td>
+                        <td>{{formation.nbSession}}</td>
+                        <td>{{formation.dateDebut | date: 'dd-MM-yyyy'}}</td>
+                        <td>{{formation.dateFin | date: 'dd-MM-yyyy'}}</td>
+                        <td>{{formation.budget}}</td>
+                        <td>{{formation.domaine.libelle}}</td>
+                      <td>
+                        <!-- Example single danger button -->
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-default">Action</button>
+                          <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                            <span class="sr-only">Toggle Dropdown</span>
+                            <div class="dropdown-menu" role="menu">
+                                <a class="dropdown-item" [routerLink]="['/home/formation', formation.id]">Consult {{formation.id}}</a>
+                            </div>
+                          </button>
+                        </div>
+                    </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->

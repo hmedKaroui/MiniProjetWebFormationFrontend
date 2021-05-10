@@ -1,0 +1,128 @@
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Formation {{formation.titre}}</h1>
+        </div>
+
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  <section class="content" >
+      <div class="container-fluid" id ="main-container">
+        <div class="row">
+          <div class="col-12">
+            <div class="card ">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  Informations about formation:
+                </h3>
+                <div class="card-tools">
+                  <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                  </div>
+                </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+              </div>
+              <!-- /.card-body -->
+              <div><p><B>Titre</B> : {{formation.titre}}</p></div>
+              <div><p><B>Type de formation </B> : {{formation.typeFormation}}</p></div>
+              <div><p><B>Nombre de Sessions</B> : {{formation.nbSession}}</p></div>
+              <div><p><B>Date Début</B> : {{formation.dateDebut| date: 'dd-MM-yyyy'}}</p></div>
+              <div><p><B>Date Fin</B> : {{formation.dateFin| date: 'dd-MM-yyyy'}}</p></div>
+              <div><p><B>Budget</B> : {{formation.budget}}</p></div>
+              <div><p><B>Domaine</B> : {{formation.domaine.libelle}}</p></div>
+            </div>
+            <!-- /.card -->
+            
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+
+    <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Sessions : </h1>
+            </div>
+  
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+  
+      <!-- Main content -->
+      <section class="content" >
+        <div class="container-fluid" id ="main-container">
+          <div class="row">
+            <div class="col-12">
+              <div class="card ">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <i class="far fa-chart-bar"></i>
+                    List of Sesssions for current Formation 
+                  </h3>
+                  <div class="card-tools">
+                    <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                      <form class="form-inline my-2 my-lg-0">
+                        <input type="search" (ngModelChange)="searchSessions(key.value)" #key="ngModel" name="key" ngModel id="searchName" class="form-control mr-sm-2" placeholder="Search Sessions..." required>
+                     </form>
+                    </div>
+                  </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table #dataTable class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                          <th>Lieu</th>
+                          <th>Date debut</th>
+                          <th>Date fin</th>
+                          <th>Nombre de participant</th>
+                          <th>Formateur</th>
+                          <th>Organisme</th>
+                          <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let session of sessions">
+                          <td>{{session.lieu}}</td>
+                          <td>{{session.dateDebut | date: 'dd-MM-yyyy'}}</td>
+                          <td>{{session.dateFin | date: 'dd-MM-yyyy'}}</td>
+                          <td>{{session.nbParticipant}}</td>
+                          <td>{{session.formateur.prenom}} {{session.formateur.nom}}</td>
+                          <td>{{session.organisme.libelle}}</td>
+                        <td>
+                          <!-- Example single danger button -->
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-default">Action</button>
+                            <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                              <span class="sr-only">Toggle Dropdown</span>
+                              <div class="dropdown-menu" role="menu">
+                                <a class="dropdown-item" (click)="onEnrollSession(session)">Enrole {{session.id}}</a>
+                              </div>
+                            </button>
+                          </div>
+                      </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->

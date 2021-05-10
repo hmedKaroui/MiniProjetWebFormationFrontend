@@ -22,6 +22,8 @@ import { DomaineManagementComponent } from './component/pages/admin/domaine-mana
 import { FormationManagamentComponent } from './component/pages/admin/formation-managament/formation-managament.component';
 import { SessionManagementComponent } from './component/pages/admin/session-management/session-management.component';
 import { InnerSessionManagamentComponent } from './component/pages/admin/inner-session-managament/inner-session-managament.component';
+import { FormationListComponent } from './component/pages/user/formation-list/formation-list.component';
+import { SessionOfFormationComponent } from './component/pages/user/session-of-formation/session-of-formation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -50,6 +52,8 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'profile',canActivate : [AuthMiddleware,UserMiddleware], component: ProfileComponent },
       { path: 'user',canActivate : [AuthMiddleware,UserMiddleware], component: BoardUserComponent },
+      { path : 'formation_list', canActivate: [AuthMiddleware,UserMiddleware], component: FormationListComponent},
+      { path : 'formation/:formatonId' , canActivate: [AuthMiddleware,UserMiddleware] , component : SessionOfFormationComponent }
     ]
   }
 ];

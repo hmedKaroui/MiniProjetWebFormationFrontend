@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">TP DEV.WEB.AVANCEE 20-21</a>
+    <a href="#" class="navbar-brand">Formation Plateforme</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
         <a href="/home" class="nav-link" routerLink="/home/">Home </a>
@@ -11,7 +11,10 @@
         <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
       </li>
       <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+        <a href="/User" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+      </li>
+      <li class="nav-item">
+        <a href="/formation_list" class="nav-link" *ngIf="isLoggedIn" routerLink="formation_list">Formations List</a>
       </li>
     </ul>
 
