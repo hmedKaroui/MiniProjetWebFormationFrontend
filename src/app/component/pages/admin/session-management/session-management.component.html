@@ -135,12 +135,12 @@
                   <option *ngFor="let participantN of participantsNational"  [ngValue]="participantN">{{participantN.prenom}} {{participantN.nom}}</option>
               </select>
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
               <label>Particpant International * : </label>
-              <select class="custom-select" ngModel name="participantsI" required>
+              <select class="custom-select" ngModel name="participantsI" >
                   <option *ngFor="let participantI of participantsInternational"  [ngValue]="participantI">{{participantI.prenom}} {{participantI.nom}}</option>
               </select>
-            </div>
+            </div> -->
             <div class="modal-footer">
                <button type="button" id="add-session-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
                <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>

@@ -174,7 +174,6 @@ export class SessionManagementComponent implements OnInit {
                               tmpOrganisme,100,
                               [addForm.value.formations],
                               [addForm.value.participantsN],
-                              [addForm.value.participantsI]
                             );
     this.adminService.createSession(tmpSession).subscribe(
       (response:Session) => {
