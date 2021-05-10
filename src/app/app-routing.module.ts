@@ -21,6 +21,7 @@ import { FormateurManagementComponent } from './component/pages/admin/formateur-
 import { DomaineManagementComponent } from './component/pages/admin/domaine-management/domaine-management.component';
 import { FormationManagamentComponent } from './component/pages/admin/formation-managament/formation-managament.component';
 import { SessionManagementComponent } from './component/pages/admin/session-management/session-management.component';
+import { InnerSessionManagamentComponent } from './component/pages/admin/inner-session-managament/inner-session-managament.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -36,7 +37,8 @@ const routes: Routes = [
       { path :'formateur_management' , component : FormateurManagementComponent},
       { path: 'domaine_management' , component : DomaineManagementComponent},
       { path: 'formation_management' , component: FormationManagamentComponent},
-      { path :'session_management' , component : SessionManagementComponent}
+      { path :'session_management' , component : SessionManagementComponent},
+      { path : 'inner_session_management/:sessionId' , component : InnerSessionManagamentComponent },
     ]
   },
   {

@@ -27,6 +27,7 @@ import { FormateurManagementComponent } from './component/pages/admin/formateur-
 import { DomaineManagementComponent } from './component/pages/admin/domaine-management/domaine-management.component';
 import { FormationManagamentComponent } from './component/pages/admin/formation-managament/formation-managament.component';
 import { SessionManagementComponent } from './component/pages/admin/session-management/session-management.component';
+import { InnerSessionManagamentComponent } from './component/pages/admin/inner-session-managament/inner-session-managament.component';
 
 
 
@@ -53,6 +54,7 @@ import { SessionManagementComponent } from './component/pages/admin/session-mana
     DomaineManagementComponent,
     FormationManagamentComponent,
     SessionManagementComponent,
+    InnerSessionManagamentComponent,
   
   ],
   imports: [

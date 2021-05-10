@@ -59,6 +59,7 @@
                           <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
                             <span class="sr-only">Toggle Dropdown</span>
                             <div class="dropdown-menu" role="menu">
+                              <a class="dropdown-item" [routerLink]="['/admin/inner_session_management', session.id]">Consult {{session.id}}</a>
                               <a class="dropdown-item" (click)="onOpenModal(session,'edit')">Edit</a>
                               <a class="dropdown-item"(click)="onOpenModal(session,'delete')">Delete</a>
                             </div>
@@ -119,7 +120,7 @@
             <div class="form-group">
               <label>Organisme* : </label>
               <input type="text" ngModel name="libelle" class="form-control" id="libelle" placeholder="Ou cas ou vous ne trouvez pas le organisme cherché" >
-              <select class="custom-select" ngModel name="organisme" required>
+              <select class="custom-select" ngModel name="organisme">
                   <option *ngFor="let organisme of organismes"  [ngValue]="organisme">{{organisme.libelle}}</option>
               </select>
             </div>

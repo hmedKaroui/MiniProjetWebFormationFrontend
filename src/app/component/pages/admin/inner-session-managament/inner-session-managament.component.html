@@ -1,0 +1,400 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Managing Session {{session.id}}</h1>
+          </div>
+
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <section class="content" >
+        <div class="container-fluid" id ="main-container">
+          <div class="row">
+            <div class="col-12">
+              <div class="card ">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <i class="far fa-chart-bar"></i>
+                    Informations about session:
+                  </h3>
+                  <div class="card-tools">
+                    <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                    </div>
+                  </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    
+                </div>
+                <!-- /.card-body -->
+                <div><p><B>Lieu</B> : {{session.lieu}}</p></div>
+                <div><p><B>Date de début</B> : {{session.dateDebut| date: 'dd-MM-yyyy'}}</p></div>
+                <div><p><B>date de fin</B> : {{session.dateFin| date: 'dd-MM-yyyy'}}</p></div>
+                <div><p><B>nombre de participant max</B> : {{session.nbParticipant}}</p></div>
+                <div><p><B>Organisme</B> : {{session.organisme.libelle}}</p></div>
+                <div><p><B>Formateur</B> : {{session.formateur.nom}} {{session.formateur.prenom}}</p></div>
+              </div>
+              <!-- /.card -->
+              
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+
+    <!-- Main content -->
+    <section class="content" >
+        <div class="container-fluid" id ="main-container">
+          <div class="row">
+            <div class="col-12">
+              <div class="card ">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <i class="far fa-chart-bar"></i>
+                    List of Formations
+                  </h3>
+                  <div class="card-tools">
+                    <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                      <form class="form-inline my-2 my-lg-0">
+                        <input type="search" (ngModelChange)="searchFormations(key1.value)" #key1="ngModel" name="key1" ngModel id="searchName" class="form-control mr-sm-2" placeholder="Search Formation..." required>
+                    </form>
+                    <button id="test" (click)="onOpenModalOne(null,'add')" class ='btn btn-primary active' type="button"  data-toggle="modal" data-target="#CreateTeam"><i class="fas fa-plus-circle"></i> Ajouter</button>
+                    </div>
+                  </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table #dataTable class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                          <th>Titre</th>
+                          <th>Type</th>
+                          <th>Nombre de Session</th>
+                          <th>Date debut</th>
+                          <th>Date fin</th>
+                          <th>Budget</th>
+                          <th>Domaine</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let formation of formations">
+                          <td>{{formation.titre}}</td>
+                          <td>{{formation.typeFormation}}</td>
+                          <td>{{formation.nbSession}}</td>
+                          <td>{{formation.dateDebut | date: 'dd-MM-yyyy'}}</td>
+                          <td>{{formation.dateFin | date: 'dd-MM-yyyy'}}</td>
+                          <td>{{formation.budget}}</td>
+                          <td>{{formation.domaine.libelle}}</td>
+                        <td>
+                          <!-- Example single danger button -->
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-default">Action</button>
+                            <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                              <span class="sr-only">Toggle Dropdown</span>
+                              <div class="dropdown-menu" role="menu">
+                                <a class="dropdown-item"(click)="onOpenModalOne(formation,'delete')">Delete</a>
+                            </div>
+                            </button>
+                          </div>
+                      </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      <section class="content" >
+        <div class="container-fluid" id ="main-container">
+          <div class="row">
+            <div class="col-12">
+              <div class="card ">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <i class="far fa-chart-bar"></i>
+                    List of Participant National
+                  </h3>
+                  <div class="card-tools">
+                    <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                      <form class="form-inline my-2 my-lg-0">
+                        <input type="search" (ngModelChange)="searchParticipantNational(key2.value)" #key2="ngModel" name="key2" ngModel id="searchName" class="form-control mr-sm-2" placeholder="Search Particpant National..." required>
+                     </form>
+                     <button id="test" (click)="onOpenModalTwo(null,'add')" class ='btn btn-primary active' type="button"  data-toggle="modal" data-target="#CreateTeam"><i class="fas fa-plus-circle"></i> Ajouter</button>
+                    </div>
+                  </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table #dataTable1 class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Nom:</th>
+                        <th>Prenom :</th>
+                        <th>Email :</th>
+                        <th>N° Tel :</th>
+                        <th>Profile :</th>
+                        <th>Organisme :</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let partitipant of pNationals">
+                        <td>{{partitipant.nom}}</td>
+                        <td>{{partitipant.prenom}}</td>
+                        <td>{{partitipant.email}}</td>
+                        <td>{{partitipant.tel}}</td>
+                        <td>{{partitipant.profil.libelle}}</td>
+                        <td>{{partitipant.organisme.libelle}}</td>
+                        <td>
+                          <!-- Example single danger button -->
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-default">Action</button>
+                            <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                              <span class="sr-only">Toggle Dropdown</span>
+                              <div class="dropdown-menu" role="menu">
+                                <a class="dropdown-item"(click)="onOpenModalTwo(partitipant,'delete')">Delete</a>
+                            </div>
+                            </button>
+                          </div>
+                      </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      <section class="content" >
+        <div class="container-fluid" id ="main-container">
+          <div class="row">
+            <div class="col-12">
+              <div class="card ">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <i class="far fa-chart-bar"></i>
+                    List of Participant International
+                  </h3>
+                  <div class="card-tools">
+                    <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                      <form class="form-inline my-2 my-lg-0">
+                        <input type="search" (ngModelChange)="searchParticipantInternational(key3.value)" #key3="ngModel" name="key3" ngModel id="searchName2" class="form-control mr-sm-2" placeholder="Search Participant Inter..." required>
+                     </form>
+                     <button id="test" (click)="onOpenModalThree(null,'add')" class ='btn btn-primary active' type="button"  data-toggle="modal" data-target="#CreateTeam"><i class="fas fa-plus-circle"></i> Ajouter</button>
+                    </div>
+                  </div>
+                
+                <div class="card-body">
+                  <table #dataTable2 class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Nom:</th>
+                        <th>Prenom :</th>
+                        <th>Email :</th>
+                        <th>N° Tel :</th>
+                        <th>Profile :</th>
+                        <th>Pays :</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let participantI of pInternationals">
+                        <td>{{participantI.nom}}</td>
+                        <td>{{participantI.prenom}}</td>
+                        <td>{{participantI.email}}</td>
+                        <td>{{participantI.tel}}</td>
+                        <td>{{participantI.profil.libelle}}</td>
+                        <td>{{participantI.pays.libelle}}</td>
+                        <td>
+                          
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-default">Action</button>
+                            <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                              <span class="sr-only">Toggle Dropdown</span>
+                              <div class="dropdown-menu" role="menu">
+                                <a class="dropdown-item"(click)="onOpenModalThree(participantI,'delete')">Delete</a>
+                            </div>
+                            </button>
+                          </div>
+                      </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                
+              </div>
+              
+            
+            </div>
+            
+          </div>
+          
+        </div>
+        </div>
+        
+      </section>
+    <!-- /.content -->
+  </div>
+
+  <div class="modal fade" id="addFormationModal" tabindex="-1" role="dialog" aria-labelledby="FormationEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="updateFormationModalLabel">Add Formation :</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <form #editForm = "ngForm">
+            <div class="form-group" >
+                <label>Formation :</label>
+                <select ngModel name="formation" class="custom-select" required>
+                  <option *ngFor="let formation of allFormations"  [ngValue]="formation">{{formation.titre}}</option>
+                </select>
+            </div>
+              <div class="modal-footer">
+                  <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                  <button (click)="onUpdateSessionsFormations(editForm)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+              </div>
+             </form>
+          </div>
+       </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="deleteFormationModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="deleteModelLabel">Delete Formation : {{deleteFormation?.titre}}</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <p>Are you sure you want to delete formation: {{deleteFormation?.titre}} from current Session </p>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button (click)="onDeleteSessionFormations(deleteFormation?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addParticipantNationalModal" tabindex="-1" role="dialog" aria-labelledby="EditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="updateFormationModalLabel">Add Participant National :</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <form #editForm2 = "ngForm">
+            <div class="form-group" >
+                <label>Participant National :</label>
+                <select ngModel name="participantNational" class="custom-select" required>
+                  <option *ngFor="let p1 of allParticipantNational"  [ngValue]="p1">{{p1.prenom}} {{p1.nom}}</option>
+                </select>
+            </div>
+              <div class="modal-footer">
+                  <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                  <button (click)="onUpdateSessionsPN(editForm2)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+              </div>
+             </form>
+          </div>
+       </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="deleteParticipantNationalModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="deleteModelLabel">Delete Participant National : {{deleteParticipantNational?.prenom}} {{deleteParticipantNational?.nom}}</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <p>Are you sure you want to delete Participant National : {{deleteParticipantNational?.prenom}} {{deleteParticipantNational?.nom}} from current Session </p>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button (click)="onDeleteSessionPN(deleteParticipantNational?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addParticipantInternationalModal" tabindex="-1" role="dialog" aria-labelledby="EditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="updateFormationModalLabel">Add Participant International :</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <form #editForm3 = "ngForm">
+            <div class="form-group" >
+                <label>Participant International :</label>
+                <select ngModel name="participantInternational" class="custom-select" required>
+                  <option *ngFor="let p2 of allParticipantInternational"  [ngValue]="p2">{{p2.prenom}} {{p2.nom}}</option>
+                </select>
+            </div>
+              <div class="modal-footer">
+                  <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                  <button (click)="onUpdateSessionsPI(editForm3)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+              </div>
+             </form>
+          </div>
+       </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="deleteParticipantInternationalModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="deleteModelLabel">Delete Participant International : {{deleteParticipantInternational?.prenom}} {{deleteParticipantInternational?.nom}}</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <p>Are you sure you want to delete Participant International : {{deleteParticipantInternational?.prenom}} {{deleteParticipantInternational?.nom}} from current Session </p>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button (click)="onDeleteSessionPI(deleteParticipantInternational?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>

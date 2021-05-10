@@ -151,6 +151,9 @@ export class AdminService {
   public getAllSessions():Observable<Session[]> {
     return this.http.get<[Session]>(API_URL+'/sessions');
   }
+  public getSessionById(sessionId:number):Observable<Session> {
+    return this.http.get<Session>(API_URL+`/sessions/${sessionId}`);
+  }
   public createSession(session:Session):Observable<Session> {
    return  this.http.post<Session>(API_URL+'/sessions/add',session);
   }
@@ -159,5 +162,28 @@ export class AdminService {
   }
   public deleteSession(formationId:number):Observable<void> {
     return this.http.delete<void>(API_URL+`/sessions/delete/${formationId}`);
+  }
+
+  public updateSessionFormations(sessionId : number , formation :Formation):Observable<Session> {
+    return this.http.put<Session>(API_URL+`/sessions/updateFormations/${sessionId}`,formation);
+  }
+
+  public deleteSessionFormations(sessionId : number , idFormation :number):Observable<Session> {
+    return this.http.delete<Session>(API_URL+`/sessions/${sessionId}/deleteFormations/${idFormation}`);
+  }
+
+  public updateSessionPN(sessionId : number , pN :ParticipantNational):Observable<Session> {
+    return this.http.put<Session>(API_URL+`/sessions/updatePN/${sessionId}`,pN);
+  }
+
+  public deleteSessionPN(sessionId : number , idPN :number):Observable<Session> {
+    return this.http.delete<Session>(API_URL+`/sessions/${sessionId}/deletePN/${idPN}`);
+  }
+  public updateSessionPI(sessionId : number , pI :ParticipantInternational):Observable<Session> {
+    return this.http.put<Session>(API_URL+`/sessions/updatePI/${sessionId}`,pI);
+  }
+
+  public deleteSessionPI(sessionId : number , idPI :number):Observable<Session> {
+    return this.http.delete<Session>(API_URL+`/sessions/${sessionId}/deletePI/${idPI}`);
   }
 }
